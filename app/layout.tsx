@@ -24,6 +24,10 @@ export const metadata: Metadata = {
 
   authors: [{ name: "AR Stationers" }],
 
+  verification: {
+    google: "Pz7Pp0GKNNm5L1Rt_e4IYfS5C0sGX2kU056CrbBEwWs",
+  },
+
   openGraph: {
     title: "AR Stationers",
     description:

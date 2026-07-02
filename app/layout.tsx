@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "AR Stationers - Printing, Photocopy, Stationery, School Bags, Mobile Accessories, Computer Accessories and Office Supplies in G-10 Markaz Islamabad.",
+    "AR Stationers provides Printing, Photocopy, Stationery, School Bags, Office Supplies, Mobile Accessories and Computer Accessories in G-10 Markaz Islamabad.",
 
   keywords: [
     "AR Stationers",
@@ -19,21 +19,17 @@ export const metadata: Metadata = {
     "Office Supplies",
     "Mobile Accessories",
     "Computer Accessories",
-    "G-10 Markaz",
     "Islamabad",
   ],
 
   authors: [{ name: "AR Stationers" }],
 
-  creator: "AR Stationers",
-
   openGraph: {
     title: "AR Stationers",
     description:
-      "Printing, Photocopy, Stationery & Office Supplies in Islamabad.",
+      "Printing, Stationery & Office Supplies in Islamabad.",
     url: "https://ar-stationers.vercel.app",
     siteName: "AR Stationers",
-    locale: "en_PK",
     type: "website",
   },
 

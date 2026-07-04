@@ -1,16 +1,26 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { getProducts } from "../app/services/productService";
+
 export default function MobileAccessories() {
-  const mobiles = [
-    { icon: "🔌", name: "Charger", price: "Rs. 1200" },
-    { icon: "⚡", name: "Fast Charger", price: "Rs. 1800" },
-    { icon: "🔗", name: "Type-C Cable", price: "Rs. 600" },
-    { icon: "🍎", name: "iPhone Cable", price: "Rs. 1200" },
-    { icon: "🎧", name: "Earphones", price: "Rs. 900" },
-    { icon: "🎵", name: "Bluetooth Earbuds", price: "Rs. 3500" },
-    { icon: "🔋", name: "Power Bank", price: "Rs. 4500" },
-    { icon: "💾", name: "Memory Card", price: "Rs. 1500" },
-    { icon: "💽", name: "USB Flash Drive", price: "Rs. 1800" },
-    { icon: "🎧", name: "Headphones", price: "Rs. 2800" },
-  ];
+  const [products, setProducts] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function loadProducts() {
+      const data = await getProducts();
+
+      const mobileProducts = data.filter(
+        (item: any) =>
+          item.category.toLowerCase() === "mobile accessories"
+      );
+
+      setProducts(mobileProducts);
+    }
+
+    loadProducts();
+  }, []);
 
   return (
     <section id="mobile" className="py-20 bg-white">
@@ -24,28 +34,45 @@ export default function MobileAccessories() {
           Original Mobile Accessories
         </p>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
-          {mobiles.map((item, index) => (
-            <div
-              key={index}
-              className="bg-gray-50 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 p-6 text-center"
+          {products.map((item: any) => (
+            <Link
+              key={item.id}
+              href={`/product/${item.id}`}
+              className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden block"
             >
-              <div className="text-6xl mb-4">
-                {item.icon}
+              <div className="h-48 bg-gray-100 flex items-center justify-center">
+                {item.image ? (
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-7xl">📱</span>
+                )}
               </div>
 
-              <h3 className="font-bold text-lg text-blue-900">
-                {item.name}
-              </h3>
+              <div className="p-5">
+                <h3 className="text-xl font-bold text-blue-900">
+                  {item.name}
+                </h3>
 
-              <p className="text-green-600 font-bold text-xl mt-2">
-                {item.price}
-              </p>
+                <p className="text-yellow-500 mt-2">
+                  ⭐⭐⭐⭐⭐
+                </p>
 
-              <a
-                href={`https://wa.me/923407488658?text=${encodeURIComponent(
-                  `Assalam-o-Alaikum,
+                <p className="text-green-600 text-2xl font-bold mt-2">
+                  Rs. {item.price}
+                </p>
+
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open(
+                      `https://wa.me/923407488658?text=${encodeURIComponent(
+                        `Assalam-o-Alaikum,
 
 I want to order:
 
@@ -54,19 +81,19 @@ ${item.name}
 Please share the price and availability.
 
 Thanks.`
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full mt-5 bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-bold text-center transition"
-              >
-                Order on WhatsApp
-              </a>
-
-            </div>
+                      )}`,
+                      "_blank"
+                    );
+                  }}
+                  className="block w-full mt-5 bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-bold text-center transition"
+                >
+                  Order on WhatsApp
+                </button>
+              </div>
+            </Link>
           ))}
 
         </div>
-
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-
+import { CartProvider } from "./context/CartContext";
 export const metadata: Metadata = {
   title: {
     default: "AR Stationers",
@@ -51,8 +51,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="overflow-x-hidden bg-gray-100">
-        {children}
-      </body>
+  <CartProvider>
+    {children}
+  </CartProvider>
+</body>
     </html>
   );
 }

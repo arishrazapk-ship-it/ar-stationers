@@ -1,6 +1,16 @@
+"use client";
+import Link from "next/link";
 import SearchBar from "./SearchBar";
+import { useCart } from "../app/context/CartContext";
 
 export default function Header() {
+  const { cart } = useCart();
+
+  const totalItems = cart.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
+
   return (
     <header className="bg-[#173A8F] text-white shadow-md">
       <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col lg:flex-row items-center justify-between gap-6">
@@ -60,20 +70,32 @@ export default function Header() {
 
 </nav>
 
-        {/* Right Side */}
-        <div className="flex items-center gap-3 w-full lg:w-auto">
-          <SearchBar />
+      {/* Right Side */}
+<div className="flex items-center gap-3 w-full lg:w-auto">
+  <SearchBar />
 
-         <a
-  href="https://wa.me/923407488658?text=Assalam-o-Alaikum, I want to know about your products."
-  target="_blank"
-  rel="noopener noreferrer"
-  className="bg-green-500 hover:bg-green-600 px-5 py-3 rounded-lg font-bold whitespace-nowrap transition"
->
-  WhatsApp
-</a>
-        </div>
+  
+  <Link href="/cart">
+  <div className="relative cursor-pointer text-3xl hover:scale-110 transition">
+    🛒
 
+    {totalItems > 0 && (
+      <span className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+        {totalItems}
+      </span>
+    )}
+  </div>
+</Link>
+
+  <a
+    href="https://wa.me/923407488658?text=Assalam-o-Alaikum, I want to know about your products."
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-green-500 hover:bg-green-600 px-5 py-3 rounded-lg font-bold whitespace-nowrap transition"
+  >
+    WhatsApp
+  </a>
+</div>
       </div>
     </header>
   );

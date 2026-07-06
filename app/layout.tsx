@@ -1,3 +1,4 @@
+import { WishlistProvider } from "./context/WishlistContext";
 import "./globals.css";
 import type { Metadata } from "next";
 import { CartProvider } from "./context/CartContext";
@@ -51,9 +52,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="overflow-x-hidden bg-gray-100">
-  <CartProvider>
+ <CartProvider>
+  <WishlistProvider>
     {children}
-  </CartProvider>
+  </WishlistProvider>
+</CartProvider>
 </body>
     </html>
   );

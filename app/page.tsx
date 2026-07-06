@@ -1,3 +1,4 @@
+import FeaturedProducts from "../components/FeaturedProducts";
 import PremiumFooter from "../components/PremiumFooter";
 import Stats from "../components/Stats";
 import CallSection from "../components/CallSection";
@@ -35,6 +36,7 @@ export default function Home() {
         <Categories />
 <Offers />
         <Products />
+        <FeaturedProducts />
 <Stationery />
 <MobileAccessories />
 <PrintingServices />

@@ -32,3 +32,12 @@ export async function updateOrderStatus(
     status,
   });
 }
+export async function updateOrder(
+  id: string,
+  data: Partial<Order>
+) {
+  return await updateDoc(
+    doc(db, "orders", id),
+    data
+  );
+}

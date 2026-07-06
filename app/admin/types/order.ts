@@ -19,7 +19,15 @@ export interface Order {
 
   total: number;
 
-  status: "Pending" | "Processing" | "Delivered" | "Cancelled";
+  paymentMethod: string;
+
+  transactionId?: string;
+
+  status:
+    | "Pending"
+    | "Processing"
+    | "Delivered"
+    | "Cancelled";
 
   createdAt: number;
 }
